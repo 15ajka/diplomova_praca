@@ -20,13 +20,13 @@ V tomto semestry som si naštudovala základy pre:
 * CNN
 
 Naštudované články:
-* Consumer rgb-d cameras and their applications​
-* An Overview Of 3D Object Detection​
-* RGB-D image-based Object Detection: from Traditional Methods to Deep Learning Techniques
-* Objects as Points
-* PIXOR: Real-time 3D Object Detection from Point Clouds​
-* Deep Object Pose Estimation for Semantic Robotic Grasping of Household Objects
-* Domain Randomization for Transferring Deep Neural Networks from Simulation to the Real World​
+* [Consumer rgb-d cameras and their applications​](http://alumni.cs.ucr.edu/~klitomis/files/RGBD-intro.pdf)
+* [An Overview Of 3D Object Detection​](https://arxiv.org/abs/2010.15614)
+* [RGB-D image-based Object Detection: from Traditional Methods to Deep Learning Techniques](https://arxiv.org/abs/1907.09236)
+* [Objects as Points](https://arxiv.org/abs/1904.07850)
+* [PIXOR: Real-time 3D Object Detection from Point Clouds​](https://arxiv.org/abs/1902.06326)
+* [Deep Object Pose Estimation for Semantic Robotic Grasping of Household Objects](https://arxiv.org/abs/1809.10790)
+* [Domain Randomization for Transferring Deep Neural Networks from Simulation to the Real World​](https://arxiv.org/abs/1703.06907)
 
 ## Praktická práca
 - Naštudovanie  práce s ROS - The Robot Operating System – práca s BAG​
