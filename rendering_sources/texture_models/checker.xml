@@ -1,0 +1,26 @@
+<mujoco>
+   <asset>
+      <texture file="../textures/checkerboard.png" type="cube" name="checker" />
+      <material name="checker-cube" reflectance="0.9" texrepeat="10.5 10.5" texture="checker" texuniform="true" />
+      <texture file="../textures/sphere.png" type="2d" name="checker-sph" />
+      <texture name="builtin_checker" builtin="checker" rgb1=".2 .3 .4" rgb2=".1 0.15 0.2" width="200" height="200"/>
+      <material name="checker_mat" reflectance="0.9" texrepeat="2 1" texture="builtin_checker" texuniform="true" />
+   </asset>
+   <worldbody>
+      <light diffuse=".5 .5 .5" pos="0 0 3" dir="0 0 -1"/>
+      <geom type="plane" size="1 1 0.1" rgba=".9 1 0 1"/>
+     <body pos="0.5 0 0.1">
+         <joint type="free"/>
+         <geom type="box" size=".1 .1 .1" material="checker_mat" />
+      </body>
+      <body pos="0.5 0.5 0.1">
+         <joint type="free"/>
+         <geom type="box" size=".1 .2 .1" material="checker_mat" rgba="1 .1 0.1 1"/>
+      </body>
+    <body pos="1 0 0.1">
+         <joint type="free"/>
+         <geom type="sphere" size=".1 .1 .1" material="checker_mat" />
+      </body>
+        <camera axisangle="0 1 0 0" fovy="45" name="camera_a" pos="0 0 2"></camera>
+   </worldbody>
+</mujoco>
