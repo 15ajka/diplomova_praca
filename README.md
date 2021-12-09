@@ -5,6 +5,8 @@ Toto je repozitár k mojej diplomovej práci za rok 2021/2022
 # Pozadie práce
 Na našej fakulte sa od tohto roku nachádza robot NICO. S týmto robotom sú plánované rôzne experimenty, ktoré obsahujú interakciu ľudského učiteľa s robotom. Ultimátnym cieľom je aby sa robot od učiteľa dokázal učiť. Ako príklad by sme mohli uviesť rozpoznávanie objektov po ich predstavení učiteľom. Aby boli tieto činnosti možné uskutočniť, je potrebné, aby robot dokázal komunikovať s reálnym svetom, či už vizuálne alebo sluchovo. V tejto práci sa pozrieme na vizuálny vstup robota a pokúsime sa mu dať v ohraničenom ponímaní zmysel. 
 
+![alt text](https://www.researchgate.net/profile/Nicolas-Navarro-Guerrero/publication/319314363/figure/fig1/AS:547187290329088@1507471024143/Neuro-Inspired-Companion-Robot-NICO.png)
+
 # Cieľ práce
 Cieľom diplomovej práce je detekcia drevených stavebnicových kociek a ľudskej ruky pomocou stereo kamery robota. Cieľom je natrénovať objektový detektor pre drevené stavebnicové kocky čisto na syntetických dátachu, keďže datasety pre náš konkrétny set-up nemáme k dispozícií a získavanie a anotácia dát by bola príliš zložitá. Cieľom je tiež vyskúšať rôzne typy neurónových sietí, použité pre objektovú detekciu, porovnať ich a vytvoriť čo najpresnejšie riešenie.
 
@@ -25,6 +27,8 @@ Preštudovanie existujúcich riešení, používajúce daného robota/stereo kam
 * Vytvorenie základnej scény a objektov
 * Práca s textúrami
 * Vytváranie náhodných scén
+
+![alt_text](https://github.com/15ajka/diplomova_praca/blob/dev_models/rendering_sources/texture_images/checker_cylinder2.png)
 
 Tiež sme sa začali venovať písaniu práce. Konkrétne to sú časti:
 * Úvod
