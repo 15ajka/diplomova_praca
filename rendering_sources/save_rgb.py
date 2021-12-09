@@ -15,8 +15,8 @@ model = load_model_from_path(model_path)
 sim = MjSim(model)
 
 img = sim.render(width=500, height=500, camera_name=camera_name)
-print(img)
+#print(img)
 plt.imshow(img, interpolation='nearest')
 plt.savefig(img_with_path)
-plt.show()
+#plt.show()
 

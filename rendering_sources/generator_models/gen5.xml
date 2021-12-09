@@ -1,0 +1,35 @@
+<mujoco>
+   <asset>
+      <texture name="builtin_checker" builtin="checker" type="2d" rgb1="1 1 0" rgb2="0 0 1" width="200" height="200"/>
+      <texture name="builtin_gradient" builtin="gradient" rgb1="0 .9 .3" rgb2="1 1 1" width="200" height="200"/>
+      <texture name="builtin_flat" builtin="flat" rgb1="1 0 0" rgb2="1 0 0"  width="200" height="200"/>
+
+      <material name="checker_mat" reflectance="0.9" texrepeat="3 3" texture="builtin_checker" texuniform="false" />
+      <material name="gradient_mat" reflectance="1" texrepeat="1 1" texture="builtin_gradient" texuniform="true"/>
+      <material name="flat_mat" reflectance="1" texrepeat="1 1" texture="builtin_flat" texuniform="true"/>
+   </asset>
+
+   <worldbody>
+      <light diffuse=".9 .9 .9" pos="0 0 3" dir="0 0 -1"/>
+     <geom type="plane" size="1 1 0.1" rgba="0.3 0.3 0.3 1"/>
+<body pos="0.08569875701211727 0.14355828682890914 0.2789361791107061">
+<joint type="free"/>
+ <geom type="box" size="0.2789361791107061 0.2789361791107061 0.2789361791107061" material="flat_mat" />
+</body>
+<body pos="0.5683174337643669 -0.6761132960173031 0.21417974253564925">
+<joint type="free"/>
+ <geom type="box" size="0.21417974253564925 0.21417974253564925 0.21417974253564925" material="flat_mat" />
+</body>
+<body pos="-0.8190093036655868 0.09756795479742453 0.2056758377948933">
+<joint type="free"/>
+ <geom type="sphere" size="0.2056758377948933 0.2056758377948933 0.2056758377948933" material="gradient_mat" />
+</body>
+<body pos="-0.06470176813966488 0.36219959489778564 0.22613834273081587">
+<joint type="free"/>
+ <geom type="sphere" size="0.22613834273081587 0.22613834273081587 0.22613834273081587" material="gradient_mat" />
+</body>
+<body pos="-0.7434923616079959 0.5556444799916822 0.2925285787852294">
+<joint type="free"/>
+ <geom type="sphere" size="0.2925285787852294 0.2925285787852294 0.2925285787852294" material="gradient_mat" />
+</body><camera euler="60 0 180" fovy="60" name="camera_a" pos="0 -1.5 1"></camera>   </worldbody>
+</mujoco>

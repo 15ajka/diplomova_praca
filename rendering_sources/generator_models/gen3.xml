@@ -1,0 +1,35 @@
+<mujoco>
+   <asset>
+      <texture name="builtin_checker" builtin="checker" type="2d" rgb1="1 1 0" rgb2="0 0 1" width="200" height="200"/>
+      <texture name="builtin_gradient" builtin="gradient" rgb1="0 .9 .3" rgb2="1 1 1" width="200" height="200"/>
+      <texture name="builtin_flat" builtin="flat" rgb1="1 0 0" rgb2="1 0 0"  width="200" height="200"/>
+
+      <material name="checker_mat" reflectance="0.9" texrepeat="3 3" texture="builtin_checker" texuniform="false" />
+      <material name="gradient_mat" reflectance="1" texrepeat="1 1" texture="builtin_gradient" texuniform="true"/>
+      <material name="flat_mat" reflectance="1" texrepeat="1 1" texture="builtin_flat" texuniform="true"/>
+   </asset>
+
+   <worldbody>
+      <light diffuse=".9 .9 .9" pos="0 0 3" dir="0 0 -1"/>
+     <geom type="plane" size="1 1 0.1" rgba="0.3 0.3 0.3 1"/>
+<body pos="0.1356404387024125 0.7033886437589624 0.16596057244994636">
+<joint type="free"/>
+ <geom type="sphere" size="0.16596057244994636 0.16596057244994636 0.16596057244994636" material="gradient_mat" />
+</body>
+<body pos="-0.7867682420849212 0.1708165467541073 0.15711751753822717">
+<joint type="free"/>
+ <geom type="sphere" size="0.15711751753822717 0.15711751753822717 0.15711751753822717" material="gradient_mat" />
+</body>
+<body pos="-0.8456166288779018 0.6230435551003117 0.16550315238598146">
+<joint type="free"/>
+ <geom type="box" size="0.16550315238598146 0.16550315238598146 0.16550315238598146" material="gradient_mat" />
+</body>
+<body pos="-0.42212281713857475 -0.443174740035709 0.2846518968208003">
+<joint type="free"/>
+ <geom type="box" size="0.2846518968208003 0.2846518968208003 0.2846518968208003" material="flat_mat" />
+</body>
+<body pos="-0.243723037298471 0.7070820845310426 0.2518249066789132">
+<joint type="free"/>
+ <geom type="box" size="0.2518249066789132 0.2518249066789132 0.2518249066789132" material="checker_mat" />
+</body><camera euler="60 0 180" fovy="60" name="camera_a" pos="0 -1.5 1"></camera>   </worldbody>
+</mujoco>

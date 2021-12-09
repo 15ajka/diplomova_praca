@@ -1,0 +1,31 @@
+<mujoco>
+   <asset>
+      <texture name="builtin_checker" builtin="checker" type="2d" rgb1="1 1 0" rgb2="0 0 1" width="200" height="200"/>
+      <texture name="builtin_gradient" builtin="gradient" rgb1="0 .9 .3" rgb2="1 1 1" width="200" height="200"/>
+      <texture name="builtin_flat" builtin="flat" rgb1="1 0 0" rgb2="1 0 0"  width="200" height="200"/>
+
+      <material name="checker_mat" reflectance="0.9" texrepeat="3 3" texture="builtin_checker" texuniform="false" />
+      <material name="gradient_mat" reflectance="1" texrepeat="1 1" texture="builtin_gradient" texuniform="true"/>
+      <material name="flat_mat" reflectance="1" texrepeat="1 1" texture="builtin_flat" texuniform="true"/>
+   </asset>
+
+   <worldbody>
+      <light diffuse=".9 .9 .9" pos="0 0 3" dir="0 0 -1"/>
+     <geom type="plane" size="1 1 0.1" rgba="0.3 0.3 0.3 1"/>
+<body pos="-0.5658997632665012 0.7649169108448541 0.2648308638174962">
+<joint type="free"/>
+ <geom type="box" size="0.2648308638174962 0.2648308638174962 0.2648308638174962" material="checker_mat" />
+</body>
+<body pos="-0.8778939289589813 0.5715825732054602 0.10337118447913823">
+<joint type="free"/>
+ <geom type="box" size="0.10337118447913823 0.10337118447913823 0.10337118447913823" material="flat_mat" />
+</body>
+<body pos="-0.24559131862203432 0.5369781613923484 0.18896495768554833">
+<joint type="free"/>
+ <geom type="box" size="0.18896495768554833 0.18896495768554833 0.18896495768554833" material="gradient_mat" />
+</body>
+<body pos="-0.44280954084700413 0.811713958614871 0.13336591311597956">
+<joint type="free"/>
+ <geom type="box" size="0.13336591311597956 0.13336591311597956 0.13336591311597956" material="checker_mat" />
+</body><camera euler="60 0 180" fovy="60" name="camera_a" pos="0 -1.5 1"></camera>   </worldbody>
+</mujoco>
