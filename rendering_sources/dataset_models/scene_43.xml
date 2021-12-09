@@ -1,0 +1,20 @@
+<mujoco>
+   <asset>
+<texture type="skybox" builtin="gradient" rgb1="0.4 0.1 0.1" rgb2="0.6 0.4 0.7" width="256" height="256"/>
+<texture name="gradient_0" builtin="gradient" rgb1="0.2 0.1 0.3" rgb2="0.1 0.3 0.3" width="200" height="200"/>
+<texture name="gradient_1" builtin="gradient" rgb1="0.8 1.0 0.7" rgb2="0.3 1.0 0.9" width="200" height="200"/>
+<texture name="flat_2" builtin="flat" rgb1="0.5 0.0 0.4" rgb2="0.5 0.0 0.4"  width="200" height="200"/>
+<texture name="flat_3" builtin="flat" rgb1="0.8 0.3 0.1" rgb2="0.8 0.3 0.1"  width="200" height="200"/><material name="gradient_0_mat" reflectance="0" texture="gradient_0" texuniform="true"/>
+<material name="gradient_1_mat" reflectance="0" texture="gradient_1" texuniform="true"/>
+<material name="flat_2_mat" reflectance="0" texture="flat_2" texuniform="true"/>
+<material name="flat_3_mat" reflectance="0" texture="flat_3" texuniform="true"/>
+   </asset>
+
+   <worldbody>
+      <light diffuse=".9 .9 .9" pos="0 0 3" dir="0 0 -1"/>
+     <geom type="plane" size="1 1 0.1" rgba="0.6 1.0 0.7 1"/>
+<geom type="box" pos="-0.48 -0.09 0.21" size="0.21 0.21 0.21" material="gradient_0_mat" />
+<geom type="sphere" pos="0.07 0.2 0.25" size="0.25 0.25 0.25" material="gradient_1_mat" />
+<geom type="cylinder" pos="-0.66 0.57 0.25" size="0.24 0.25 0.25" material="flat_2_mat" />
+<geom type="box" pos="0.01 0.81 0.18" size="0.18 0.18 0.18" material="flat_3_mat" /><camera euler="60 0 180" fovy="60" name="camera_a" pos="0 -1.5 1"></camera>   </worldbody>
+</mujoco>

@@ -26,13 +26,13 @@ for i in range(obj_count):
     if b == "checker":
         repeat = r.randint(2,10)
         tex_strings.append(f"<texture name=\"{b}_{i}\" builtin=\"checker\" type=\"2d\" rgb1=\"{r1} {g1} {b1}\" rgb2=\"{r2} {g2} {b2}\" width=\"200\" height=\"200\"/>")       
-        mat_strings.append(f"<material name=\"{b}_{i}_mat\" reflectance=\"0.9\" texrepeat=\"{repeat} {repeat}\" texture=\"{b}_{i}\" texuniform=\"false\" />")
+        mat_strings.append(f"<material name=\"{b}_{i}_mat\" reflectance=\"0\" texrepeat=\"{repeat} {repeat}\" texture=\"{b}_{i}\" texuniform=\"false\" />")
     if b == "gradient":
         tex_strings.append(f"<texture name=\"{b}_{i}\" builtin=\"gradient\" rgb1=\"{r1} {g1} {b1}\" rgb2=\"{r2} {g2} {b2}\" width=\"200\" height=\"200\"/>")
-        mat_strings.append(f"<material name=\"{b}_{i}_mat\" reflectance=\"1\" texture=\"{b}_{i}\" texuniform=\"true\"/>")
+        mat_strings.append(f"<material name=\"{b}_{i}_mat\" reflectance=\"0\" texture=\"{b}_{i}\" texuniform=\"true\"/>")
     if b == "flat":
         tex_strings.append(f"<texture name=\"{b}_{i}\" builtin=\"flat\" rgb1=\"{r1} {g1} {b1}\" rgb2=\"{r1} {g1} {b1}\"  width=\"200\" height=\"200\"/>")
-        mat_strings.append(f"<material name=\"{b}_{i}_mat\" reflectance=\"1\" texture=\"{b}_{i}\" texuniform=\"true\"/>")
+        mat_strings.append(f"<material name=\"{b}_{i}_mat\" reflectance=\"0\" texture=\"{b}_{i}\" texuniform=\"true\"/>")
     mat_names.append(f"{b}_{i}_mat")     
 
 xml_prefix = """\
@@ -64,12 +64,16 @@ for i in range(obj_count):
     a, b, c = round(r.uniform(0.1, 0.3), 2), round(r.uniform(0.1, 0.3), 2), round(r.uniform(0.1, 0.3), 2)
     if obj in ("cube", "sphere"):
         s_x, s_y, s_z = a, a, a
-    if obj in ("cylinder", "box"):
+    if obj == "box":
         s_x, s_y, s_z = a, b, c
+    if obj == "cylinder":
+        s_x, s_y, s_z = a, a, b
     if obj == "cube":
         obj = "box"
     intersects = 1
+    tries = 0
     while intersects > 0:
+        tries += 1
         x, y, z = round(r.uniform(-1 + s_x, 1-s_x), 2), round(r.uniform(-1 + s_y, 1-s_y), 2), s_z 
         intersects = len(obj_positions)
         if intersects == 0:
@@ -77,23 +81,27 @@ for i in range(obj_count):
         #print("POS1:", x, y, "\nSIZ1", s_x, s_y)
         #print("POS2:", obj_positions[0][:2], "\nSIZ2:", obj_sizes[0][:2])
         for idx, t in enumerate(obj_positions):
-            if t[0] + obj_sizes[idx][0] < x - s_x:
+            if t[0] + obj_sizes[idx][0] < x - s_x - 0.01:
                 intersects -= 1
          #       print("HERE1")
                 continue
-            if t[0] - obj_sizes[idx][0] > x + s_x:
+            if t[0] - obj_sizes[idx][0] > x + s_x + 0.01:
                 intersects -= 1
          #       print("HERE2")
                 continue
-            if t[1] + obj_sizes[idx][1] < y - s_y:
+            if t[1] + obj_sizes[idx][1] < y - s_y - 0.01:
                 intersects -= 1
          #       print("HERE3")
                 continue
-            if t[1] - obj_sizes[idx][1] > y + s_y:
+            if t[1] - obj_sizes[idx][1] > y + s_y + 0.01:
                 intersects -= 1
          #       print("HERE4")
                 continue
     #print("------------------", s_x, s_y, s_z, x, y, z)
+    # due to cylinder having y hight on second pozition not z
+    if obj == "cylinder":
+        obj_sizes.append((s_x, s_y, s_z))
+        s_y = s_z
     obj_string =  f"<geom type=\"{obj}\" pos=\"{x} {y} {z}\" size=\"{s_x} {s_y} {s_z}\" material=\"{mat}\" />"
     obj_sizes.append((s_x, s_y, s_z))
     obj_positions.append((x, y, z))

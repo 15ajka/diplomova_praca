@@ -15,10 +15,10 @@ camera="camera_a"
 mkdir "${prefix}_images"
 mkdir "${prefix}_models"
 
-model_with_path="${prefix}_models/${name}.xml" 
+model_path="${prefix}_models" 
 for i in `seq 1 $img_count`
 do
-  python3 create_xml.py camera_a $model_with_path
-  python3 save_rgb.py $model_with_path $camera "${prefix}_images/${name}_${i}.png"
+  python3 create_xml.py camera_a "$model_path/${name}_${i}.xml"
+  python3 save_rgb.py "$model_path/${name}_${i}.xml" $camera "${prefix}_images/${name}_${i}.png"
   echo ${i}
 done

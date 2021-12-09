@@ -1,0 +1,29 @@
+<mujoco>
+   <asset>
+<texture type="skybox" builtin="gradient" rgb1="0.0 0.3 0.6" rgb2="0.2 0.0 0.2" width="256" height="256"/>
+<texture name="flat_0" builtin="flat" rgb1="1.0 0.4 0.3" rgb2="1.0 0.4 0.3"  width="200" height="200"/>
+<texture name="flat_1" builtin="flat" rgb1="0.6 0.3 0.8" rgb2="0.6 0.3 0.8"  width="200" height="200"/>
+<texture name="gradient_2" builtin="gradient" rgb1="0.7 0.7 0.8" rgb2="0.1 0.7 0.4" width="200" height="200"/>
+<texture name="gradient_3" builtin="gradient" rgb1="1.0 0.5 0.9" rgb2="0.1 1.0 0.0" width="200" height="200"/>
+<texture name="checker_4" builtin="checker" type="2d" rgb1="0.7 1.0 0.3" rgb2="0.2 0.8 0.6" width="200" height="200"/>
+<texture name="gradient_5" builtin="gradient" rgb1="0.8 0.4 0.5" rgb2="1.0 1.0 0.8" width="200" height="200"/>
+<texture name="flat_6" builtin="flat" rgb1="0.7 0.3 0.6" rgb2="0.7 0.3 0.6"  width="200" height="200"/><material name="flat_0_mat" reflectance="0" texture="flat_0" texuniform="true"/>
+<material name="flat_1_mat" reflectance="0" texture="flat_1" texuniform="true"/>
+<material name="gradient_2_mat" reflectance="0" texture="gradient_2" texuniform="true"/>
+<material name="gradient_3_mat" reflectance="0" texture="gradient_3" texuniform="true"/>
+<material name="checker_4_mat" reflectance="0" texrepeat="6 6" texture="checker_4" texuniform="false" />
+<material name="gradient_5_mat" reflectance="0" texture="gradient_5" texuniform="true"/>
+<material name="flat_6_mat" reflectance="0" texture="flat_6" texuniform="true"/>
+   </asset>
+
+   <worldbody>
+      <light diffuse=".9 .9 .9" pos="0 0 3" dir="0 0 -1"/>
+     <geom type="plane" size="1 1 0.1" rgba="0.9 0.5 0.9 1"/>
+<geom type="sphere" pos="0.01 -0.4 0.18" size="0.18 0.18 0.18" material="flat_0_mat" />
+<geom type="box" pos="-0.71 -0.65 0.15" size="0.21 0.14 0.15" material="flat_1_mat" />
+<geom type="cylinder" pos="0.37 0.25 0.15" size="0.19 0.15 0.15" material="gradient_2_mat" />
+<geom type="box" pos="-0.52 0.59 0.12" size="0.23 0.12 0.12" material="gradient_3_mat" />
+<geom type="sphere" pos="0.73 0.53 0.13" size="0.13 0.13 0.13" material="checker_4_mat" />
+<geom type="box" pos="-0.36 -0.13 0.15" size="0.15 0.15 0.15" material="gradient_5_mat" />
+<geom type="box" pos="0.52 -0.61 0.28" size="0.28 0.28 0.28" material="flat_6_mat" /><camera euler="60 0 180" fovy="60" name="camera_a" pos="0 -1.5 1"></camera>   </worldbody>
+</mujoco>

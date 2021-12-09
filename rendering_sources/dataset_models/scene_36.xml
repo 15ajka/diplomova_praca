@@ -1,0 +1,26 @@
+<mujoco>
+   <asset>
+<texture type="skybox" builtin="gradient" rgb1="0.5 0.6 0.7" rgb2="0.8 0.2 0.8" width="256" height="256"/>
+<texture name="flat_0" builtin="flat" rgb1="1.0 0.0 0.7" rgb2="1.0 0.0 0.7"  width="200" height="200"/>
+<texture name="gradient_1" builtin="gradient" rgb1="0.6 0.3 0.3" rgb2="0.9 0.9 1.0" width="200" height="200"/>
+<texture name="gradient_2" builtin="gradient" rgb1="0.5 0.5 1.0" rgb2="0.2 0.3 0.0" width="200" height="200"/>
+<texture name="flat_3" builtin="flat" rgb1="0.4 0.8 0.4" rgb2="0.4 0.8 0.4"  width="200" height="200"/>
+<texture name="gradient_4" builtin="gradient" rgb1="0.6 1.0 0.2" rgb2="0.4 0.1 0.4" width="200" height="200"/>
+<texture name="checker_5" builtin="checker" type="2d" rgb1="0.1 0.1 0.5" rgb2="0.4 0.1 0.1" width="200" height="200"/><material name="flat_0_mat" reflectance="0" texture="flat_0" texuniform="true"/>
+<material name="gradient_1_mat" reflectance="0" texture="gradient_1" texuniform="true"/>
+<material name="gradient_2_mat" reflectance="0" texture="gradient_2" texuniform="true"/>
+<material name="flat_3_mat" reflectance="0" texture="flat_3" texuniform="true"/>
+<material name="gradient_4_mat" reflectance="0" texture="gradient_4" texuniform="true"/>
+<material name="checker_5_mat" reflectance="0" texrepeat="8 8" texture="checker_5" texuniform="false" />
+   </asset>
+
+   <worldbody>
+      <light diffuse=".9 .9 .9" pos="0 0 3" dir="0 0 -1"/>
+     <geom type="plane" size="1 1 0.1" rgba="0.5 0.6 0.2 1"/>
+<geom type="box" pos="-0.63 0.21 0.18" size="0.18 0.18 0.18" material="flat_0_mat" />
+<geom type="box" pos="-0.16 0.85 0.29" size="0.11 0.11 0.29" material="gradient_1_mat" />
+<geom type="box" pos="-0.71 0.66 0.2" size="0.2 0.2 0.2" material="gradient_2_mat" />
+<geom type="box" pos="0.34 -0.76 0.15" size="0.15 0.15 0.15" material="flat_3_mat" />
+<geom type="box" pos="0.23 0.27 0.17" size="0.21 0.2 0.17" material="gradient_4_mat" />
+<geom type="box" pos="0.1 -0.27 0.25" size="0.21 0.11 0.25" material="checker_5_mat" /><camera euler="60 0 180" fovy="60" name="camera_a" pos="0 -1.5 1"></camera>   </worldbody>
+</mujoco>
