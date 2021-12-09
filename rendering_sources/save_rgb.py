@@ -5,6 +5,7 @@ import sys
 from matplotlib import pyplot as plt
 from mujoco_py import load_model_from_path, MjSim, functions
 import numpy as np
+import time
 
 model_path = sys.argv[1]
 camera_name = sys.argv[2]
