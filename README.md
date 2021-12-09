@@ -1,25 +1,30 @@
 # VIZUÁLNY  SYSTÉM PRE INTERAKCIU  ĽUDSKÉHO  UČITEĽA S ROBOTOM​
 
-Toto je repozitár k mojej diplomovej práci za rok 2021/2022
+Toto je repozitár obsahujúci stav diplomovej práce a dôležité linky. Práca je písana v rokoch 2021/2022
 
 # Pozadie práce
-Na našej fakulte sa od tohto roku nachádza robot NICO. S týmto robotom sú plánované rôzne experimenty, ktoré obsahujú interakciu ľudského učiteľa s robotom. Ultimátnym cieľom je aby sa robot od učiteľa dokázal učiť. Ako príklad by sme mohli uviesť rozpoznávanie objektov po ich predstavení učiteľom. Aby boli tieto činnosti možné uskutočniť, je potrebné, aby robot dokázal komunikovať s reálnym svetom, či už vizuálne alebo sluchovo. V tejto práci sa pozrieme na vizuálny vstup robota a pokúsime sa mu dať v ohraničenom ponímaní zmysel. 
+Na našej fakulte sa už dlhšiu dobu zaoberáme experimentami, ktoré obsahujú interakciu ľudského učiteľa s robotom. Ultimátnym cieľom je, aby sa robot od učiteľa dokázal učiť rôznym zručnostiam. Ako príklad by sme mohli uviesť rozpoznávanie objektov robotom po ich ukážke a pomenovanú učiteľom. Aby boli tieto činnosti možné uskutočniť, je potrebné, aby robot dokázal komunikovať s reálnym svetom, či už vizuálne alebo sluchovo. V tejto práci sa pozrieme na vizuálnu časť tohto problému a pokúsime sa robotovi z kamerového vstupu poskytnúť čo najelpšie informácie v rámci skúmaného problému. Konkrétne budeme pracovať s robotom NICO, ktorého môžeme vidieť na obrázku.
 
 ![alt text](https://www.researchgate.net/profile/Nicolas-Navarro-Guerrero/publication/319314363/figure/fig1/AS:547187290329088@1507471024143/Neuro-Inspired-Companion-Robot-NICO.png)
 
 # Cieľ práce
-Cieľom diplomovej práce je detekcia drevených stavebnicových kociek a ľudskej ruky pomocou stereo kamery robota. Cieľom je natrénovať objektový detektor pre drevené stavebnicové kocky čisto na syntetických dátachu, keďže datasety pre náš konkrétny set-up nemáme k dispozícií a získavanie a anotácia dát by bola príliš zložitá. Cieľom je tiež vyskúšať rôzne typy neurónových sietí, použité pre objektovú detekciu, porovnať ich a vytvoriť čo najpresnejšie riešenie.
+Cieľom diplomovej práce je detekcia drevených stavebnicových kociek a ľudskej ruky pomocou stereo kamery robota. Cieľom je natrénovať objektový detektor pre drevené stavebnicové kocky čisto na syntetických dátachu, keďže datasety pre náš konkrétny set-up nemáme k dispozícií. Získavanie a anotácia dát by bola príliš zložitá a zdĺhavá. Cieľom je tiež vyskúšať rôzne typy neurónových sietí, použité pre objektovú detekciu. Chceme ich porovnať a vytvoriť čo najlepšie riešenie.
 
 ## Momentálny stav problému
-Tento projekt interakcie človeka s robotom už prebieha dlhšie. Existuje riešenie tohto problému, ktoré funguje pre staršieho robota, ktoré je založené na farebnej segmentácii a RANSAC-u. Táto metóda je vysoko závislá na farbe kociek a jej výsledky sú často nepresné. Keďže sa aj tym robota a kamery zmenil, je nutné nájsť nové, ideálne lepšie riešenie.
+Tento projekt interakcie človeka s robotom už prebieha dlhšie. Existuje riešenie tohto problému, ktoré funguje pre staršieho robota, ktoré je založené na farebnej segmentácii a RANSAC-u. Táto metóda je vysoko závislá na farbe kociek a jej výsledky sú často nepresné. Keďže sa robot a typ kamery zmenili, je nutné nájsť nové, ideálne lepšie riešenie.
 
 # Doterajšia práca 2.semester
 
-V tomto semestry sa zadanie problému čiastočne zmenilo, keďže bol robot zmenený. Tento robot má oproti minulému, ktorý pracoval s RGBD kamerou 2 kamery. Bude teda pracovať so stereo videním. Keďže sa zadanie problému zmenilo, bolo potrebné tomu prispôsobiť aj samotnú prácu.
+V tomto semestry sa zadanie problému čiastočne zmenilo, preto bolo potrebné sa prispôsobiť. Tento robot má oproti minulému, ktorý pracoval s RGBD kamerou 2 kamery. Bude teda potrebné pracovať so stereo videním. Istú časť semestra sme preto venovali teoretickému štúdiu a návrhu riešenia.
 
 # Teoretické štúdium
-Preštudovanie existujúcich riešení, používajúce daného robota/stereo kameru
-* [Consumer rgb-d cameras and their applications​](http://alumni.cs.ucr.edu/~klitomis/files/RGBD-intro.pdf)
+Preštudovanie existujúcich riešení, používajúce daného robota/stereo kamery.
+* [Domain Randomization for Transferring Deep Neural Networks from Simulation to the Real World​](https://arxiv.org/abs/1703.06907)
+* [Weakly-Supervised Object Detection Learning through Human-Robot Interaction](https://ieeexplore.ieee.org/document/9555781)
+* [EPOS: Estimating 6D Pose of Objects with Symmetries](http://cmp.felk.cvut.cz/epos/)
+* [Deep Object Pose Estimation for Semantic Robotic Grasping of Household Objects](https://arxiv.org/abs/1809.10790)
+
+Následne sme zo spomínaných riešení vybrali jeden článok, ktorý bude hlavným zdrojom pri tvorení nášho riešenia. Bol to konkrétne prvý spomínaný članok, ktorý sme vybrali kvôli tomu, že pri trénovaní nevyužíval žiadne dáta z reálneho sveta. Keďže tento článok používa staršiu architektúru siete a zároveň vytvára jeden objektový detektor pre každý objekt, túto časť článku sa chystáme nahradiť iným riešením. Konkrétny postup je ešte v procese skúmania.
 
 # Prakticá časť
 * Sfunkčnenie simulátora
