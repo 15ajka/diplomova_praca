@@ -2,13 +2,42 @@
 
 Toto je repozitár k mojej diplomovej práci za rok 2021/2022
 
+# Pozadie práce
+Na našej fakulte sa od tohto roku nachádza robot NICO. S týmto robotom sú plánované rôzne experimenty, ktoré obsahujú interakciu ľudského učiteľa s robotom. Ultimátnym cieľom je aby sa robot od učiteľa dokázal učiť. Ako príklad by sme mohli uviesť rozpoznávanie objektov po ich predstavení učiteľom. Aby boli tieto činnosti možné uskutočniť, je potrebné, aby robot dokázal komunikovať s reálnym svetom, či už vizuálne alebo sluchovo. V tejto práci sa pozrieme na vizuálny vstup robota a pokúsime sa mu dať v ohraničenom ponímaní zmysel. 
+
 # Cieľ práce
-Detekcia kociek a ľudskej ruky pomocou RGBD kamery. Cieľom je využiť neurónovú sieť a vytvorenie syntetického datasetu pre trénovanie tejto siete.
+Cieľom diplomovej práce je detekcia drevených stavebnicových kociek a ľudskej ruky pomocou stereo kamery robota. Cieľom je natrénovať objektový detektor pre drevené stavebnicové kocky čisto na syntetických dátachu, keďže datasety pre náš konkrétny set-up nemáme k dispozícií a získavanie a anotácia dát by bola príliš zložitá. Cieľom je tiež vyskúšať rôzne typy neurónových sietí, použité pre objektovú detekciu, porovnať ich a vytvoriť čo najpresnejšie riešenie.
 
-## Momentálne riešenie
-Existuje momentálne riešenie tohto problému, ktoré je založené na farebnej segmentácii a RANSAC-u. Táto metóda je napr. závislá na farbe kociek a jej výsledky nie sú ideálne. Preto hľadáme lepšie riešenie.
+## Momentálny stav problému
+Tento projekt interakcie človeka s robotom už prebieha dlhšie. Existuje riešenie tohto problému, ktoré funguje pre staršieho robota, ktoré je založené na farebnej segmentácii a RANSAC-u. Táto metóda je vysoko závislá na farbe kociek a jej výsledky sú často nepresné. Keďže sa aj tym robota a kamery zmenil, je nutné nájsť nové, ideálne lepšie riešenie.
 
-# Doterajšia práca
+# Doterajšia práca 2.semester
+
+V tomto semestry sa zadanie problému čiastočne zmenilo, keďže bol robot zmenený. Tento robot má oproti minulému, ktorý pracoval s RGBD kamerou 2 kamery. Bude teda pracovať so stereo videním. Keďže sa zadanie problému zmenilo, bolo potrebné tomu prispôsobiť aj samotnú prácu.
+
+# Teoretické štúdium
+Preštudovanie existujúcich riešení, používajúce daného robota/stereo kameru
+* [Consumer rgb-d cameras and their applications​](http://alumni.cs.ucr.edu/~klitomis/files/RGBD-intro.pdf)
+
+# Prakticá časť
+* Sfunkčnenie simulátora
+* Zoznámenie sa s fungovaním simulátora
+* Vytvorenie základnej scény a objektov
+* Práca s textúrami
+* Vytváranie náhodných scén
+
+Tiež sme sa začali venovať písaniu práce. Konkrétne to sú časti:
+* Úvod
+* Počítačové videnie
+* Objektová detekcia
+
+# Ciele práce 2.semestra (čo treba dorobiť)
+* vytvoriť trénovacie/validačné/testovacie sysntetické datasety (pre rôzne nastavenia s pripraveným skriptom generovať obrazy)
+* Na datasetoch natrénovať viacero modelov objektových detektorov
+* Vyhodnotiť výsledky
+* Spísať minimálne 15 strán práce 
+
+# Doterajšia práca 1.semester
 
 Oblasti počítačového videnia venujem iba krátku dobu. Preto som sa tento semester zamerala na naštudovanie základov počítačového videnia a spracovania. Tiež som študovala pokročilejšie techniky a články zaoberajúce sa tematikou mojej práce. 
 
