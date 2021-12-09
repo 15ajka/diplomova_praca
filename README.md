@@ -33,7 +33,7 @@ Následne sme zo spomínaných riešení vybrali jeden článok, ktorý bude hla
 * Práca s textúrami
 * Vytváranie náhodných scén
 
-![alt_text](https://github.com/15ajka/diplomova_praca/blob/dev_models/rendering_sources/texture_images/checker_cylinder2.png)
+![alt_text](https://github.com/15ajka/diplomova_praca/blob/main/rendering_sources/dataset_images/scene_59.png)
 
 Tiež sme sa začali venovať písaniu práce. Konkrétne to sú časti:
 * Úvod
