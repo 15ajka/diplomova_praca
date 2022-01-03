@@ -1,5 +1,5 @@
 #This script creates scene model with camera, parameters from arguments will be added later on
-#RUN: python3 create_xml.py <camera_name> <c_x> <c_y> <c_z>
+#RUN: python3 create_xml.py <model_path_without_suffix>
 
 import sys
 import random as r
@@ -7,6 +7,9 @@ import random as r
 def random_rgb():
     return round(r.uniform(0,1),1), round(r.uniform(0,1),1), round(r.uniform(0,1),1)
     
+
+min_obj_size = 0.1
+max_obj_size = 0.2
 
 objects = ["cube", "box", "sphere", "cylinder"]
 builtin = ["checker", "gradient", "flat"]
@@ -25,7 +28,7 @@ for i in range(obj_count):
     r2, g2, b2 = round(r.uniform(0,1),1), round(r.uniform(0,1),1), round(r.uniform(0,1),1), 
     if b == "checker":
         repeat = r.randint(2,10)
-        tex_strings.append(f"<texture name=\"{b}_{i}\" builtin=\"checker\" type=\"2d\" rgb1=\"{r1} {g1} {b1}\" rgb2=\"{r2} {g2} {b2}\" width=\"200\" height=\"200\"/>")       
+        tex_strings.append(f"<texture name=\"{b}_{i}\" builtin=\"checker\" rgb1=\"{r1} {g1} {b1}\" rgb2=\"{r2} {g2} {b2}\" width=\"200\" height=\"200\"/>")       
         mat_strings.append(f"<material name=\"{b}_{i}_mat\" reflectance=\"0\" texrepeat=\"{repeat} {repeat}\" texture=\"{b}_{i}\" texuniform=\"false\" />")
     if b == "gradient":
         tex_strings.append(f"<texture name=\"{b}_{i}\" builtin=\"gradient\" rgb1=\"{r1} {g1} {b1}\" rgb2=\"{r2} {g2} {b2}\" width=\"200\" height=\"200\"/>")
@@ -61,7 +64,7 @@ for i in range(obj_count):
     obj = r.choice(objects)
     mat = mat_names[i]
     #size of object
-    a, b, c = round(r.uniform(0.1, 0.3), 2), round(r.uniform(0.1, 0.3), 2), round(r.uniform(0.1, 0.3), 2)
+    a, b, c = round(r.uniform(min_obj_size, max_obj_size), 2), round(r.uniform(min_obj_size, max_obj_size), 2), round(r.uniform(min_obj_size, max_obj_size), 2)
     if obj in ("cube", "sphere"):
         s_x, s_y, s_z = a, a, a
     if obj == "box":
@@ -102,7 +105,8 @@ for i in range(obj_count):
     if obj == "cylinder":
         obj_sizes.append((s_x, s_y, s_z))
         s_y = s_z
-    obj_string =  f"<geom type=\"{obj}\" pos=\"{x} {y} {z}\" size=\"{s_x} {s_y} {s_z}\" material=\"{mat}\" />"
+    x_rot = r.randint(0,89)
+    obj_string =  f"<geom type=\"{obj}\" pos=\"{x} {y} {z}\" size=\"{s_x} {s_y} {s_z}\" material=\"{mat}\" euler=\"0 0 {x_rot}\" />"
     obj_sizes.append((s_x, s_y, s_z))
     obj_positions.append((x, y, z))
     obj_type.append(obj)
@@ -114,13 +118,17 @@ xml_suffix = """\
 </mujoco>\
 """
 
-camera_name = sys.argv[1]
-camera_line = f"<camera euler=\"60 0 180\" fovy=\"60\" name=\"{camera_name}\" pos=\"0 -1.5 1\"></camera>"
+camera_line1 = f"<camera euler=\"60 0 180\" fovy=\"60\" name=\"camera1\" pos=\"-0.2 -1.5 1\"></camera>"
+camera_line2 = f"<camera euler=\"60 0 180\" fovy=\"60\" name=\"camera2\" pos=\"0.2 -1.5 1\"></camera>"
+
 #upper_camera = f"<camera euler=\"0 0 0\" fovy=\"60\" name=\"{camera_name}\" pos=\"0 0 2\"></camera>"
 
-xml_string = xml_prefix + "\n".join(obj_strings) + camera_line + xml_suffix
-#xml_string = xml_prefix + "\n".join(obj_strings) + upper_camera + xml_suffix
+xml_string1 = xml_prefix + "\n".join(obj_strings) + camera_line1 + xml_suffix
+xml_string2 = xml_prefix + "\n".join(obj_strings) + camera_line2 + xml_suffix
 
 #print(xml_string)
-xml_file = open(sys.argv[2], "w+")
-xml_file.write(xml_string)
+xml_file1 = open(sys.argv[1] + '_c1.xml', "w+")
+xml_file2 = open(sys.argv[1] + '_c2.xml', "w+")
+xml_file1.write(xml_string1)
+xml_file2.write(xml_string2)
+

@@ -1,0 +1,29 @@
+<mujoco>
+   <asset>
+<texture type="skybox" builtin="gradient" rgb1="1.0 0.7 0.3" rgb2="0.2 0.9 0.0" width="256" height="256"/>
+<texture name="flat_0" builtin="flat" rgb1="0.7 0.1 0.7" rgb2="0.7 0.1 0.7"  width="200" height="200"/>
+<texture name="flat_1" builtin="flat" rgb1="1.0 0.3 0.9" rgb2="1.0 0.3 0.9"  width="200" height="200"/>
+<texture name="flat_2" builtin="flat" rgb1="0.6 0.5 0.2" rgb2="0.6 0.5 0.2"  width="200" height="200"/>
+<texture name="gradient_3" builtin="gradient" rgb1="0.7 0.4 0.6" rgb2="0.4 0.8 0.4" width="200" height="200"/>
+<texture name="gradient_4" builtin="gradient" rgb1="0.4 0.6 0.4" rgb2="0.6 0.2 0.9" width="200" height="200"/>
+<texture name="gradient_5" builtin="gradient" rgb1="0.8 0.1 0.3" rgb2="0.1 0.4 0.1" width="200" height="200"/>
+<texture name="gradient_6" builtin="gradient" rgb1="0.7 0.8 0.2" rgb2="0.2 0.0 0.6" width="200" height="200"/><material name="flat_0_mat" reflectance="0" texture="flat_0" texuniform="true"/>
+<material name="flat_1_mat" reflectance="0" texture="flat_1" texuniform="true"/>
+<material name="flat_2_mat" reflectance="0" texture="flat_2" texuniform="true"/>
+<material name="gradient_3_mat" reflectance="0" texture="gradient_3" texuniform="true"/>
+<material name="gradient_4_mat" reflectance="0" texture="gradient_4" texuniform="true"/>
+<material name="gradient_5_mat" reflectance="0" texture="gradient_5" texuniform="true"/>
+<material name="gradient_6_mat" reflectance="0" texture="gradient_6" texuniform="true"/>
+   </asset>
+
+   <worldbody>
+      <light diffuse=".9 .9 .9" pos="0 0 3" dir="0 0 -1"/>
+     <geom type="plane" size="1 1 0.1" rgba="0.1 0.7 0.6 1"/>
+<geom type="box" pos="0.57 -0.56 0.23" size="0.2 0.27 0.23" material="flat_0_mat" />
+<geom type="cylinder" pos="-0.33 -0.34 0.2" size="0.3 0.2 0.2" material="flat_1_mat" />
+<geom type="box" pos="0.24 0.63 0.16" size="0.24 0.29 0.16" material="flat_2_mat" />
+<geom type="cylinder" pos="0.74 0.71 0.22" size="0.17 0.22 0.22" material="gradient_3_mat" />
+<geom type="box" pos="0.18 0.05 0.13" size="0.13 0.13 0.13" material="gradient_4_mat" />
+<geom type="cylinder" pos="-0.32 0.26 0.14" size="0.23 0.14 0.14" material="gradient_5_mat" />
+<geom type="box" pos="-0.77 0.32 0.18" size="0.18 0.18 0.18" material="gradient_6_mat" /><camera euler="60 0 180" fovy="60" name="camera2" pos="0.1 -1.5 1"></camera>   </worldbody>
+</mujoco>

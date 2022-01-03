@@ -1,0 +1,23 @@
+<mujoco>
+   <asset>
+<texture type="skybox" builtin="gradient" rgb1="0.8 1.0 0.5" rgb2="0.1 0.2 0.3" width="256" height="256"/>
+<texture name="checker_0" builtin="checker" rgb1="0.1 0.9 0.0" rgb2="0.2 0.8 0.9" width="200" height="200"/>
+<texture name="checker_1" builtin="checker" rgb1="0.6 0.5 0.5" rgb2="0.2 0.5 0.5" width="200" height="200"/>
+<texture name="flat_2" builtin="flat" rgb1="0.5 0.1 0.4" rgb2="0.5 0.1 0.4"  width="200" height="200"/>
+<texture name="checker_3" builtin="checker" rgb1="0.7 0.2 0.4" rgb2="0.9 0.6 0.4" width="200" height="200"/>
+<texture name="flat_4" builtin="flat" rgb1="0.6 0.8 1.0" rgb2="0.6 0.8 1.0"  width="200" height="200"/><material name="checker_0_mat" reflectance="0" texrepeat="10 10" texture="checker_0" texuniform="false" />
+<material name="checker_1_mat" reflectance="0" texrepeat="8 8" texture="checker_1" texuniform="false" />
+<material name="flat_2_mat" reflectance="0" texture="flat_2" texuniform="true"/>
+<material name="checker_3_mat" reflectance="0" texrepeat="4 4" texture="checker_3" texuniform="false" />
+<material name="flat_4_mat" reflectance="0" texture="flat_4" texuniform="true"/>
+   </asset>
+
+   <worldbody>
+      <light diffuse=".9 .9 .9" pos="0 0 3" dir="0 0 -1"/>
+     <geom type="plane" size="1 1 0.1" rgba="0.4 1.0 0.6 1"/>
+<geom type="box" pos="-0.66 0.12 0.19" size="0.13 0.15 0.19" material="checker_0_mat" euler="0 0 81" />
+<geom type="box" pos="0.8 0.75 0.18" size="0.14 0.19 0.18" material="checker_1_mat" euler="0 0 3" />
+<geom type="sphere" pos="-0.8 -0.8 0.19" size="0.19 0.19 0.19" material="flat_2_mat" euler="0 0 20" />
+<geom type="box" pos="0.33 -0.07 0.13" size="0.13 0.13 0.13" material="checker_3_mat" euler="0 0 8" />
+<geom type="cylinder" pos="-0.39 -0.65 0.16" size="0.19 0.16 0.16" material="flat_4_mat" euler="0 0 21" /><camera euler="60 0 180" fovy="60" name="camera2" pos="0.2 -1.5 1"></camera>   </worldbody>
+</mujoco>

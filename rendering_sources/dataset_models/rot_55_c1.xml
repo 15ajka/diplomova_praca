@@ -1,0 +1,26 @@
+<mujoco>
+   <asset>
+<texture type="skybox" builtin="gradient" rgb1="0.2 0.4 0.5" rgb2="0.1 0.8 0.6" width="256" height="256"/>
+<texture name="flat_0" builtin="flat" rgb1="0.7 0.8 0.7" rgb2="0.7 0.8 0.7"  width="200" height="200"/>
+<texture name="checker_1" builtin="checker" rgb1="0.6 0.4 0.9" rgb2="0.1 0.3 0.5" width="200" height="200"/>
+<texture name="gradient_2" builtin="gradient" rgb1="0.6 0.6 0.1" rgb2="0.6 0.6 0.0" width="200" height="200"/>
+<texture name="gradient_3" builtin="gradient" rgb1="0.6 0.4 0.1" rgb2="0.6 0.8 0.4" width="200" height="200"/>
+<texture name="flat_4" builtin="flat" rgb1="0.3 0.8 0.3" rgb2="0.3 0.8 0.3"  width="200" height="200"/>
+<texture name="checker_5" builtin="checker" rgb1="0.1 0.6 0.0" rgb2="0.4 0.8 0.2" width="200" height="200"/><material name="flat_0_mat" reflectance="0" texture="flat_0" texuniform="true"/>
+<material name="checker_1_mat" reflectance="0" texrepeat="10 10" texture="checker_1" texuniform="false" />
+<material name="gradient_2_mat" reflectance="0" texture="gradient_2" texuniform="true"/>
+<material name="gradient_3_mat" reflectance="0" texture="gradient_3" texuniform="true"/>
+<material name="flat_4_mat" reflectance="0" texture="flat_4" texuniform="true"/>
+<material name="checker_5_mat" reflectance="0" texrepeat="5 5" texture="checker_5" texuniform="false" />
+   </asset>
+
+   <worldbody>
+      <light diffuse=".9 .9 .9" pos="0 0 3" dir="0 0 -1"/>
+     <geom type="plane" size="1 1 0.1" rgba="0.8 0.5 1.0 1"/>
+<geom type="box" pos="-0.84 0.68 0.12" size="0.12 0.12 0.12" material="flat_0_mat" euler="0 0 57" />
+<geom type="box" pos="-0.0 0.83 0.13" size="0.13 0.12 0.13" material="checker_1_mat" euler="0 0 17" />
+<geom type="box" pos="-0.39 -0.77 0.14" size="0.1 0.12 0.14" material="gradient_2_mat" euler="0 0 13" />
+<geom type="sphere" pos="-0.77 -0.64 0.17" size="0.17 0.17 0.17" material="gradient_3_mat" euler="0 0 52" />
+<geom type="cylinder" pos="0.67 -0.51 0.13" size="0.14 0.13 0.13" material="flat_4_mat" euler="0 0 20" />
+<geom type="cylinder" pos="0.48 0.19 0.18" size="0.19 0.18 0.18" material="checker_5_mat" euler="0 0 57" /><camera euler="60 0 180" fovy="60" name="camera1" pos="-0.2 -1.5 1"></camera>   </worldbody>
+</mujoco>
