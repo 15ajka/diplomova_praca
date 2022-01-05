@@ -1,0 +1,27 @@
+<mujoco>
+   <asset>
+<texture type="skybox" builtin="gradient" rgb1="0.6 0.6 0.2" rgb2="0.0 0.9 0.9" width="500" height="500"/>
+<texture name="flat_0" builtin="flat" rgb1="0.8 0.1 0.8" rgb2="0.8 0.1 0.8"  width="500" height="500"/>
+<texture name="checker_1" builtin="checker" rgb1="0.5 0.3 0.8" rgb2="0.6 0.8 0.8" width="500" height="500"/>
+<texture name="flat_2" builtin="flat" rgb1="0.3 0.5 0.7" rgb2="0.3 0.5 0.7"  width="500" height="500"/>
+<texture name="gradient_3" builtin="gradient" rgb1="0.2 0.8 0.6" rgb2="0.2 0.3 0.6" width="500" height="500"/>
+<texture name="flat_4" builtin="flat" rgb1="1.0 0.4 0.1" rgb2="1.0 0.4 0.1"  width="500" height="500"/><material name="flat_0_mat" reflectance="0.8702273378445726" texture="flat_0" texuniform="true"/>
+<material name="checker_1_mat" reflectance="0.2954983985310804" texrepeat="3 3" texture="checker_1" texuniform="false" />
+<material name="flat_2_mat" reflectance="0.3311697249422122" texture="flat_2" texuniform="true"/>
+<material name="gradient_3_mat" reflectance="0.9710840640426902" texture="gradient_3" texuniform="true"/>
+<material name="flat_4_mat" reflectance="0.7936135570455587" texture="flat_4" texuniform="true"/>
+   </asset>
+
+   <worldbody>
+     <geom type="plane" size="1 1 0.1" rgba="0.4 0.7 0.9 1" />
+<light pos="0.5947453503411784 -0.26116056454713976 2" dir="0 0 -1" cutoff="90" diffuse="1 1 1" specular="1 1 1"/>
+<light pos="0.682266675419599 0.22458924151459514 2" dir="0 0 -1" cutoff="90" diffuse="1 1 1" specular="1 1 1"/>
+<geom type="box" pos="0.26 0.6 0.1" size="0.1 0.2 0.1" material="flat_0_mat" euler="0 0 41" />
+<geom type="box" pos="0.79 0.32 0.13" size="0.13 0.13 0.13" material="checker_1_mat" euler="0 0 8" />
+<geom type="box" pos="0.47 -0.64 0.11" size="0.11 0.11 0.11" material="flat_2_mat" euler="0 0 13" />
+<geom type="box" pos="-0.27 0.48 0.16" size="0.17 0.17 0.16" material="gradient_3_mat" euler="0 0 51" />
+<geom type="sphere" pos="0.43 -0.21 0.14" size="0.14 0.14 0.14" material="flat_4_mat" euler="0 0 63" /><camera euler="60 0 180" fovy="60" name="camera1" pos="-0.2 -1.5 1"></camera>   </worldbody>
+   <visual>
+      <headlight diffuse="0.7 0.7 0.7"/>
+   </visual>
+</mujoco>

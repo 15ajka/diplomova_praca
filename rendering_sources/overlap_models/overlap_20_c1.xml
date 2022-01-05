@@ -1,0 +1,23 @@
+<mujoco>
+   <asset>
+<texture type="skybox" builtin="gradient" rgb1="0.8 0.6 0.1" rgb2="0.8 0.5 0.1" width="500" height="500"/>
+<texture name="checker_0" builtin="checker" rgb1="0.3 0.0 0.7" rgb2="0.6 0.9 0.5" width="500" height="500"/>
+<texture name="gradient_1" builtin="gradient" rgb1="0.2 0.7 0.9" rgb2="0.8 0.1 0.9" width="500" height="500"/>
+<texture name="gradient_2" builtin="gradient" rgb1="0.3 0.5 0.4" rgb2="0.1 0.9 0.4" width="500" height="500"/>
+<texture name="gradient_3" builtin="gradient" rgb1="0.2 0.6 0.9" rgb2="0.2 0.3 0.7" width="500" height="500"/><material name="checker_0_mat" reflectance="0.16684049456139194" texrepeat="9 9" texture="checker_0" texuniform="false" />
+<material name="gradient_1_mat" reflectance="0.14991018337636397" texture="gradient_1" texuniform="true"/>
+<material name="gradient_2_mat" reflectance="0.34138567967675326" texture="gradient_2" texuniform="true"/>
+<material name="gradient_3_mat" reflectance="0.45412367442460755" texture="gradient_3" texuniform="true"/>
+   </asset>
+
+   <worldbody>
+     <geom type="plane" size="1 1 0.1" rgba="0.5 0.7 0.8 1" />
+<light pos="0.10710673777341517 -0.5408899675209322 2" dir="0 0 -1" cutoff="90" diffuse="1 1 1" specular="1 1 1"/>
+<geom type="sphere" pos="0.24 0.3 0.18" size="0.18 0.18 0.18" material="checker_0_mat" euler="0 0 84" />
+<geom type="sphere" pos="-0.23 -0.04 0.18" size="0.18 0.18 0.18" material="gradient_1_mat" euler="0 0 83" />
+<geom type="sphere" pos="0.73 0.25 0.18" size="0.18 0.18 0.18" material="gradient_2_mat" euler="0 0 60" />
+<geom type="box" pos="-0.79 -0.5 0.16" size="0.1 0.13 0.16" material="gradient_3_mat" euler="0 0 62" /><camera euler="60 0 180" fovy="60" name="camera1" pos="-0.2 -1.5 1"></camera>   </worldbody>
+   <visual>
+      <headlight diffuse="0.7 0.7 0.7"/>
+   </visual>
+</mujoco>

@@ -1,0 +1,33 @@
+<mujoco>
+   <asset>
+<texture type="skybox" builtin="gradient" rgb1="0.1 0.9 1.0" rgb2="0.0 0.9 0.1" width="500" height="500"/>
+<texture name="checker_0" builtin="checker" rgb1="0.6 0.9 0.6" rgb2="1.0 0.2 0.2" width="500" height="500"/>
+<texture name="flat_1" builtin="flat" rgb1="0.6 0.6 0.2" rgb2="0.6 0.6 0.2"  width="500" height="500"/>
+<texture name="checker_2" builtin="checker" rgb1="0.0 0.1 0.0" rgb2="0.3 0.0 0.4" width="500" height="500"/>
+<texture name="flat_3" builtin="flat" rgb1="0.9 0.7 0.5" rgb2="0.9 0.7 0.5"  width="500" height="500"/>
+<texture name="flat_4" builtin="flat" rgb1="0.3 0.3 0.2" rgb2="0.3 0.3 0.2"  width="500" height="500"/>
+<texture name="flat_5" builtin="flat" rgb1="0.2 0.5 1.0" rgb2="0.2 0.5 1.0"  width="500" height="500"/>
+<texture name="gradient_6" builtin="gradient" rgb1="0.3 0.6 0.8" rgb2="0.6 0.6 0.9" width="500" height="500"/><material name="checker_0_mat" reflectance="0.028972800579131763" texrepeat="4 4" texture="checker_0" texuniform="false" />
+<material name="flat_1_mat" reflectance="0.9719522835523933" texture="flat_1" texuniform="true"/>
+<material name="checker_2_mat" reflectance="0.9262394248115163" texrepeat="5 5" texture="checker_2" texuniform="false" />
+<material name="flat_3_mat" reflectance="0.2541455874943852" texture="flat_3" texuniform="true"/>
+<material name="flat_4_mat" reflectance="0.08841883666339412" texture="flat_4" texuniform="true"/>
+<material name="flat_5_mat" reflectance="0.2515176080186359" texture="flat_5" texuniform="true"/>
+<material name="gradient_6_mat" reflectance="0.2527628332885059" texture="gradient_6" texuniform="true"/>
+   </asset>
+
+   <worldbody>
+     <geom type="plane" size="1 1 0.1" rgba="0.3 0.8 0.1 1" />
+<light pos="-0.30395609998269224 0.3589689535284215 2" dir="0 0 -1" cutoff="90" diffuse="1 1 1" specular="1 1 1"/>
+<light pos="0.08805961462335299 0.7248160985208354 2" dir="0 0 -1" cutoff="90" diffuse="1 1 1" specular="1 1 1"/>
+<geom type="cylinder" pos="-0.35 -0.29 0.11" size="0.17 0.11 0.11" material="checker_0_mat" euler="0 0 68" />
+<geom type="box" pos="0.21 0.37 0.12" size="0.13 0.19 0.12" material="flat_1_mat" euler="0 0 2" />
+<geom type="cylinder" pos="-0.6 0.13 0.17" size="0.15 0.17 0.17" material="checker_2_mat" euler="0 0 15" />
+<geom type="cylinder" pos="-0.81 -0.37 0.15" size="0.11 0.15 0.15" material="flat_3_mat" euler="0 0 33" />
+<geom type="box" pos="0.37 -0.75 0.14" size="0.14 0.14 0.14" material="flat_4_mat" euler="0 0 37" />
+<geom type="box" pos="0.72 -0.26 0.18" size="0.14 0.14 0.18" material="flat_5_mat" euler="0 0 25" />
+<geom type="cylinder" pos="-0.47 -0.76 0.17" size="0.19 0.17 0.17" material="gradient_6_mat" euler="0 0 77" /><camera euler="60 0 180" fovy="60" name="camera1" pos="-0.2 -1.5 1"></camera>   </worldbody>
+   <visual>
+      <headlight diffuse="0.7 0.7 0.7"/>
+   </visual>
+</mujoco>

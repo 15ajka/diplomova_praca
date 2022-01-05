@@ -1,0 +1,27 @@
+<mujoco>
+   <asset>
+<texture type="skybox" builtin="gradient" rgb1="0.6 0.0 1.0" rgb2="0.0 1.0 0.0" width="500" height="500"/>
+<texture name="gradient_0" builtin="gradient" rgb1="0.1 0.5 0.0" rgb2="0.8 0.9 0.5" width="500" height="500"/>
+<texture name="flat_1" builtin="flat" rgb1="0.0 0.7 0.7" rgb2="0.0 0.7 0.7"  width="500" height="500"/>
+<texture name="gradient_2" builtin="gradient" rgb1="0.6 0.4 0.8" rgb2="0.6 0.5 0.8" width="500" height="500"/>
+<texture name="gradient_3" builtin="gradient" rgb1="0.6 1.0 0.7" rgb2="0.4 0.4 0.7" width="500" height="500"/>
+<texture name="flat_4" builtin="flat" rgb1="0.5 0.5 0.4" rgb2="0.5 0.5 0.4"  width="500" height="500"/><material name="gradient_0_mat" reflectance="0.18809122602737538" texture="gradient_0" texuniform="true"/>
+<material name="flat_1_mat" reflectance="0.7139255542037297" texture="flat_1" texuniform="true"/>
+<material name="gradient_2_mat" reflectance="0.4050701860956847" texture="gradient_2" texuniform="true"/>
+<material name="gradient_3_mat" reflectance="0.10922379511517988" texture="gradient_3" texuniform="true"/>
+<material name="flat_4_mat" reflectance="0.641823528465808" texture="flat_4" texuniform="true"/>
+   </asset>
+
+   <worldbody>
+     <geom type="plane" size="1 1 0.1" rgba="0.2 0.0 0.3 1" />
+<light pos="0.6355140785531379 -0.02712894466014726 2" dir="0 0 -1" cutoff="90" diffuse="1 1 1" specular="1 1 1"/>
+<light pos="0.677858854956767 -0.2639972710921863 2" dir="0 0 -1" cutoff="90" diffuse="1 1 1" specular="1 1 1"/>
+<geom type="sphere" pos="0.55 -0.77 0.12" size="0.12 0.12 0.12" material="gradient_0_mat" euler="0 0 30" />
+<geom type="sphere" pos="0.32 -0.19 0.14" size="0.14 0.14 0.14" material="flat_1_mat" euler="0 0 72" />
+<geom type="box" pos="-0.63 -0.16 0.13" size="0.15 0.13 0.13" material="gradient_2_mat" euler="0 0 45" />
+<geom type="cylinder" pos="0.6 0.48 0.15" size="0.19 0.15 0.15" material="gradient_3_mat" euler="0 0 82" />
+<geom type="cylinder" pos="-0.17 0.71 0.14" size="0.14 0.14 0.14" material="flat_4_mat" euler="0 0 37" /><camera euler="60 0 180" fovy="60" name="camera2" pos="0.2 -1.5 1"></camera>   </worldbody>
+   <visual>
+      <headlight diffuse="0.7 0.7 0.7"/>
+   </visual>
+</mujoco>

@@ -3,10 +3,19 @@
 
 import sys
 import random as r
+from shapely.geometry.point import Point
+from shapely.geometry import Polygon
+from shapely import affinity
+import matplotlib.pyplot as plt
 
 def random_rgb():
     return round(r.uniform(0,1),1), round(r.uniform(0,1),1), round(r.uniform(0,1),1)
     
+def get_polygon(obj, s_x, s_y, s_z, x, y, z, x_rot):
+    if obj in ["sphere", "cylinder"]:
+        return Point(x, y).buffer(s_x)
+    basic = Polygon([(x-s_x, y+s_y), (x+s_x, y+s_y), (x+s_x,y-s_y), (x-s_x, y-s_y)])
+    return affinity.rotate(basic, x_rot, 'center')
 
 min_obj_size = 0.1
 max_obj_size = 0.2
@@ -18,24 +27,25 @@ obj_count = r.randint(4,7)
 
 tex_strings = []
 rgb_bg, rgb_bg2 = random_rgb(), random_rgb()
-tex_strings.append(f"<texture type=\"skybox\" builtin=\"gradient\" rgb1=\"{rgb_bg[0]} {rgb_bg[1]} {rgb_bg[2]}\" rgb2=\"{rgb_bg2[0]} {rgb_bg2[1]} {rgb_bg2[2]}\" width=\"256\" height=\"256\"/>")
+tex_strings.append(f"<texture type=\"skybox\" builtin=\"gradient\" rgb1=\"{rgb_bg[0]} {rgb_bg[1]} {rgb_bg[2]}\" rgb2=\"{rgb_bg2[0]} {rgb_bg2[1]} {rgb_bg2[2]}\" width=\"500\" height=\"500\"/>")
 
 mat_strings = []
 mat_names = []
 for i in range(obj_count):
     b = r.choice(builtin)
+    reflect = r.uniform(0,1)
     r1, g1, b1 = round(r.uniform(0,1),1), round(r.uniform(0,1),1), round(r.uniform(0,1),1), 
     r2, g2, b2 = round(r.uniform(0,1),1), round(r.uniform(0,1),1), round(r.uniform(0,1),1), 
     if b == "checker":
         repeat = r.randint(2,10)
-        tex_strings.append(f"<texture name=\"{b}_{i}\" builtin=\"checker\" rgb1=\"{r1} {g1} {b1}\" rgb2=\"{r2} {g2} {b2}\" width=\"200\" height=\"200\"/>")       
-        mat_strings.append(f"<material name=\"{b}_{i}_mat\" reflectance=\"0\" texrepeat=\"{repeat} {repeat}\" texture=\"{b}_{i}\" texuniform=\"false\" />")
+        tex_strings.append(f"<texture name=\"{b}_{i}\" builtin=\"checker\" rgb1=\"{r1} {g1} {b1}\" rgb2=\"{r2} {g2} {b2}\" width=\"500\" height=\"500\"/>")       
+        mat_strings.append(f"<material name=\"{b}_{i}_mat\" reflectance=\"{reflect}\" texrepeat=\"{repeat} {repeat}\" texture=\"{b}_{i}\" texuniform=\"false\" />")
     if b == "gradient":
-        tex_strings.append(f"<texture name=\"{b}_{i}\" builtin=\"gradient\" rgb1=\"{r1} {g1} {b1}\" rgb2=\"{r2} {g2} {b2}\" width=\"200\" height=\"200\"/>")
-        mat_strings.append(f"<material name=\"{b}_{i}_mat\" reflectance=\"0\" texture=\"{b}_{i}\" texuniform=\"true\"/>")
+        tex_strings.append(f"<texture name=\"{b}_{i}\" builtin=\"gradient\" rgb1=\"{r1} {g1} {b1}\" rgb2=\"{r2} {g2} {b2}\" width=\"500\" height=\"500\"/>")
+        mat_strings.append(f"<material name=\"{b}_{i}_mat\" reflectance=\"{reflect}\" texture=\"{b}_{i}\" texuniform=\"true\"/>")
     if b == "flat":
-        tex_strings.append(f"<texture name=\"{b}_{i}\" builtin=\"flat\" rgb1=\"{r1} {g1} {b1}\" rgb2=\"{r1} {g1} {b1}\"  width=\"200\" height=\"200\"/>")
-        mat_strings.append(f"<material name=\"{b}_{i}_mat\" reflectance=\"0\" texture=\"{b}_{i}\" texuniform=\"true\"/>")
+        tex_strings.append(f"<texture name=\"{b}_{i}\" builtin=\"flat\" rgb1=\"{r1} {g1} {b1}\" rgb2=\"{r1} {g1} {b1}\"  width=\"500\" height=\"500\"/>")
+        mat_strings.append(f"<material name=\"{b}_{i}_mat\" reflectance=\"{reflect}\" texture=\"{b}_{i}\" texuniform=\"true\"/>")
     mat_names.append(f"{b}_{i}_mat")     
 
 xml_prefix = """\
@@ -51,15 +61,24 @@ xml_prefix += f"""
    </asset>
 
    <worldbody>
-      <light diffuse=".9 .9 .9" pos="0 0 3" dir="0 0 -1"/>
-     <geom type="plane" size="1 1 0.1" rgba="{r_p} {g_p} {b_p} 1"/>
+     <geom type="plane" size="1 1 0.1" rgba="{r_p} {g_p} {b_p} 1" />
 """
+
+lights_count = r.randint(1,2)
+light_s = ""
+for i in range(lights_count):
+    x,y = r.uniform(-1,1), r.uniform(-1, 1)
+    light_s += f"<light pos=\"{x} {y} 2\" dir=\"0 0 -1\" cutoff=\"90\" diffuse=\"1 1 1\" specular=\"1 1 1\"/>\n"
+
+xml_prefix += light_s
 
 obj_type = []
 obj_strings = []
 obj_positions = []
 obj_sizes = []
 obj_materials = []
+obj_polygons = []
+plane = Polygon([(-1, -1), (1,-1), (1,1), (-1,1)])
 for i in range(obj_count):
     obj = r.choice(objects)
     mat = mat_names[i]
@@ -75,37 +94,24 @@ for i in range(obj_count):
         obj = "box"
     intersects = 1
     tries = 0
+    x_rot = r.randint(0,89)
+    current_poly = get_polygon('circle', 1, 1, 1, 0, 0, 0, 0)
     while intersects > 0:
         tries += 1
         x, y, z = round(r.uniform(-1 + s_x, 1-s_x), 2), round(r.uniform(-1 + s_y, 1-s_y), 2), s_z 
+        current_poly = get_polygon(obj, s_x, s_y, s_z, x, y, z, x_rot)
         intersects = len(obj_positions)
         if intersects == 0:
             continue
-        #print("POS1:", x, y, "\nSIZ1", s_x, s_y)
-        #print("POS2:", obj_positions[0][:2], "\nSIZ2:", obj_sizes[0][:2])
-        for idx, t in enumerate(obj_positions):
-            if t[0] + obj_sizes[idx][0] < x - s_x - 0.01:
+        for poly in obj_polygons:
+            if not current_poly.intersects(poly):   
                 intersects -= 1
-         #       print("HERE1")
-                continue
-            if t[0] - obj_sizes[idx][0] > x + s_x + 0.01:
-                intersects -= 1
-         #       print("HERE2")
-                continue
-            if t[1] + obj_sizes[idx][1] < y - s_y - 0.01:
-                intersects -= 1
-         #       print("HERE3")
-                continue
-            if t[1] - obj_sizes[idx][1] > y + s_y + 0.01:
-                intersects -= 1
-         #       print("HERE4")
-                continue
+    obj_polygons.append(current_poly)
     #print("------------------", s_x, s_y, s_z, x, y, z)
     # due to cylinder having y hight on second pozition not z
     if obj == "cylinder":
         obj_sizes.append((s_x, s_y, s_z))
         s_y = s_z
-    x_rot = r.randint(0,89)
     obj_string =  f"<geom type=\"{obj}\" pos=\"{x} {y} {z}\" size=\"{s_x} {s_y} {s_z}\" material=\"{mat}\" euler=\"0 0 {x_rot}\" />"
     obj_sizes.append((s_x, s_y, s_z))
     obj_positions.append((x, y, z))
@@ -113,8 +119,19 @@ for i in range(obj_count):
     obj_materials.append(mat)
     obj_strings.append(obj_string)
 
+#obj_polygons.append(plane)
+#for pol in obj_polygons:
+#    x,y = pol.exterior.xy
+#    plt.plot(x,y)
+#plt.savefig(f'final_composition_{sys.argv[2]}.png')
+#plt.show()
+
+
 xml_suffix = """\
    </worldbody>
+   <visual>
+      <headlight diffuse="0.7 0.7 0.7"/>
+   </visual>
 </mujoco>\
 """
 
