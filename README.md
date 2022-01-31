@@ -24,6 +24,7 @@ V tomto semestry sa zadanie problému čiastočne zmenilo, preto bolo potrebné 
 # Teoretické štúdium
 Doštudovanie článkov týkajúcich sa teoretického zázemia práce a lepšie preskúmanie riešení, ktoré by sme vedeli pri práci využiť.
 * [Understanding of a convolutional neural network](https://ieeexplore.ieee.org/abstract/document/8308186)
+* [Computer vision: algorithms and applications](https://books.google.sk/books?hl=sk&lr=&id=bXzAlkODwa8C&oi=fnd&pg=PR4&dq=Computer+vision:+algorithms+and+applications&ots=g--5aZqGEH&sig=ys7UlVYdqmcTchGUDDDB8GAyna4&redir_esc=y#v=onepage&q=Computer%20vision%3A%20algorithms%20and%20applications&f=false)
 * [Pixor: Real-time 3d object detection from point clouds](https://openaccess.thecvf.com/content_cvpr_2018/html/Yang_PIXOR_Real-Time_3D_CVPR_2018_paper.html)
 * [Object detection in 20 years: A survey](https://arxiv.org/abs/1905.05055)
 * [Image features detection, description and matching](https://link.springer.com/chapter/10.1007/978-3-319-28854-3_2)
