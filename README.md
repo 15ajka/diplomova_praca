@@ -8,45 +8,48 @@ Na našej fakulte sa už dlhšiu dobu zaoberáme experimentami, ktoré obsahujú
 ![alt text](https://www.researchgate.net/profile/Nicolas-Navarro-Guerrero/publication/319314363/figure/fig1/AS:547187290329088@1507471024143/Neuro-Inspired-Companion-Robot-NICO.png)
 
 # Cieľ práce
-Cieľom diplomovej práce je detekcia drevených stavebnicových kociek a ľudskej ruky pomocou stereo kamery robota. Cieľom je natrénovať objektový detektor pre drevené stavebnicové kocky čisto na syntetických dátachu, keďže datasety pre náš konkrétny set-up nemáme k dispozícií. Získavanie a anotácia dát by bola príliš zložitá a zdĺhavá. Cieľom je tiež vyskúšať rôzne typy neurónových sietí, použité pre objektovú detekciu. Chceme ich porovnať a vytvoriť čo najlepšie riešenie.
+Táto diplomová práca má viacero cieľov:
+* 3D objektová detekcia drevených stavebnicových kociek
+* Vytvorenie syntetického datasetu na tréning detektora
+* Natrénovanie objektového detektora
+* Vytvorenie reálneho datasetu na testovanie riešenie
+* Vyhodnotenie testovacích metrík
 
 ## Momentálny stav problému
-Tento projekt interakcie človeka s robotom už prebieha dlhšie. Existuje riešenie tohto problému, ktoré funguje pre staršieho robota, ktoré je založené na farebnej segmentácii a RANSAC-u. Táto metóda je vysoko závislá na farbe kociek a jej výsledky sú často nepresné. Keďže sa robot a typ kamery zmenili, je nutné nájsť nové, ideálne lepšie riešenie.
+Tento projekt interakcie človeka s robotom už prebieha dlhšie. Existuje riešenie tohto problému, ktoré funguje pre staršieho robota, ktoré je založené na farebnej segmentácii a RANSAC-u. Táto metóda je vysoko závislá na farbe kociek a jej výsledky sú často nepresné. Keďže sa robot a typ kamery sa zmenili, je nutné nájsť nové, ideálne lepšie riešenie.
 
-# Doterajšia práca 2.semester
-
-V tomto semestry sa zadanie problému čiastočne zmenilo, preto bolo potrebné sa prispôsobiť. Tento robot má oproti minulému, ktorý pracoval s RGBD kamerou 2 kamery. Bude teda potrebné pracovať so stereo videním. Istú časť semestra sme preto venovali teoretickému štúdiu a návrhu riešenia.
+# Doterajšia práca 2.ročník, 1.semester
+V tomto semestry sa zadanie problému čiastočne zmenilo, preto bolo potrebné sa prispôsobiť. Tento robot má 2 kamery, ktoré poskytujú využitie stereovidenia. Minulí robot narozdiel od toho pracoval s jednou RGBD kamerou. Nebude teda možné pracovať s hĺbkovým obrazom a bude možnosť využiť stereovidenie. Aktívne sme sa začali venovať praktickej časti diplomovej práce. Zhodnotili sme aktuálne prístupné vstupy a výstupy, situáciu na fakulte a existujúce riešenia a navrhli sme postup práce pre tento a ďalší semester.
 
 # Teoretické štúdium
-Preštudovanie existujúcich riešení, používajúce daného robota/stereo kamery.
+Doštudovanie článkov týkajúcich sa teoretického zázemia práce a lepšie preskúmanie riešení, ktoré by sme vedeli pri práci využiť.
+* [Understanding of a convolutional neural network](https://ieeexplore.ieee.org/abstract/document/8308186)
+* [Pixor: Real-time 3d object detection from point clouds](https://openaccess.thecvf.com/content_cvpr_2018/html/Yang_PIXOR_Real-Time_3D_CVPR_2018_paper.html)
+* [Object detection in 20 years: A survey](https://arxiv.org/abs/1905.05055)
+* [Image features detection, description and matching](https://link.springer.com/chapter/10.1007/978-3-319-28854-3_2)
+* [NViSII: A Scriptable Tool for Photorealistic Image Generation](https://arxiv.org/abs/2105.13962)
 * [Domain Randomization for Transferring Deep Neural Networks from Simulation to the Real World​](https://arxiv.org/abs/1703.06907)
-* [Weakly-Supervised Object Detection Learning through Human-Robot Interaction](https://ieeexplore.ieee.org/document/9555781)
-* [EPOS: Estimating 6D Pose of Objects with Symmetries](http://cmp.felk.cvut.cz/epos/)
 * [Deep Object Pose Estimation for Semantic Robotic Grasping of Household Objects](https://arxiv.org/abs/1809.10790)
 
-Následne sme zo spomínaných riešení vybrali jeden článok, ktorý bude hlavným zdrojom pri tvorení nášho riešenia. Bol to konkrétne prvý spomínaný članok, ktorý sme vybrali kvôli tomu, že pri trénovaní nevyužíval žiadne dáta z reálneho sveta. Keďže tento článok používa staršiu architektúru siete a zároveň vytvára jeden objektový detektor pre každý objekt, túto časť článku sa chystáme nahradiť iným riešením. Konkrétny postup je ešte v procese skúmania.
+# Praktická časť
+* Rozbehanie simulátora pre renderovanie jednoduchých obrazov
+* Zoznámenie sa s fungovaním simulátora, vytvorenie základnej scény, objektov, práca s textúrami, randomizácia prostredia
+* Vytváranie náhodných scén - [ukážka scény 1](https://github.com/15ajka/diplomova_praca/blob/camera_movement/rendering_sources/dataset_images/scene_14.png), [ukážka scény 2](https://github.com/15ajka/diplomova_praca/blob/camera_movement/rendering_sources/dataset_images/scene_29.png)
+* Rozbehanie DOPE generátora dát
+* Vygenerovanie prvých datasetov pre tréning - [ukážka scény s veľa kockami](https://github.com/15ajka/diplomova_praca/blob/gcloud2/gcloud/dataset/000/00001.png), [ukážka scény s jednou kockou](https://github.com/15ajka/diplomova_praca/blob/one_img/gcloud/026/00001.png), [ukážka scény s farebnými kockami](https://github.com/15ajka/diplomova_praca/blob/green_4cubes/gcloud/dataset4_g/000/00001.png)
+* Rozbehanie trénovanie DOPE CNN
+* Trénovanie na jednoduchých datasetoch - [ukážka výsledku natrénovanej siete](https://github.com/15ajka/diplomova_praca/blob/one_img/gcloud/inference_dataset4_val/00003.png.png)
 
-# Prakticá časť
-* Sfunkčnenie simulátora
-* Zoznámenie sa s fungovaním simulátora
-* Vytvorenie základnej scény a objektov
-* Práca s textúrami
-* Vytváranie náhodných scén
+# Postup práce 2.ročník, 2.semestra
+* Vytvoriť rozsiahlejšie/variabilnejšie syntetické datasety
+* Vytvoriť program na rátanie metrík výsledkov
+* Trénovanie siete na rozsiahlejších datasetoch
+* Vyhodnotenie siete na syntetických dátach
+* Vytvorenie malého datasetu z reálneho sveta
+* Určenie metrík na reálnom datasete
+* Písanie časti práce: Výskum
 
-![alt_text](https://github.com/15ajka/diplomova_praca/blob/main/rendering_sources/dataset_images/scene_59.png)
-
-Tiež sme sa začali venovať písaniu práce. Konkrétne to sú časti:
-* Úvod
-* Počítačové videnie
-* Objektová detekcia
-
-# Ciele práce 2.semestra (čo treba dorobiť)
-* vytvoriť trénovacie/validačné/testovacie sysntetické datasety (pre rôzne nastavenia s pripraveným skriptom generovať obrazy)
-* Na datasetoch natrénovať viacero modelov objektových detektorov
-* Vyhodnotiť výsledky
-* Spísať minimálne 15 strán práce 
-
-# Doterajšia práca 1.semester
+# Doterajšia práca 1.ročník, 2.semester
 
 Oblasti počítačového videnia venujem iba krátku dobu. Preto som sa tento semester zamerala na naštudovanie základov počítačového videnia a spracovania. Tiež som študovala pokročilejšie techniky a články zaoberajúce sa tematikou mojej práce. 
 
