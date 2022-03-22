@@ -1,5 +1,11 @@
+#Usage: python3 create_metrics.py <folder_name>
 import json
 import numpy as np
+import sys
+import os
+from os.path import exists
+import matplotlib.pyplot as plt
+
 
 #From annotation/network_output file return list of objects containing only necessary fields
 def read_objects_from_json(inference_json):
@@ -35,21 +41,18 @@ def find_closest_object(obj, gt_objects):
             continue
         #print("POINTS", obj['loc'], gt_obj['loc'])
         dist = distance_of_2_points(obj['loc'], gt_obj['loc'])
-        print('dist:',obj['loc'], gt_obj['loc'],dist,idx)
+        #print('dist:',obj['loc'], gt_obj['loc'],dist,idx)
         #Find closest object
         min_dist, min_idx = min((min_dist, min_idx), (dist, idx))
     return(min_dist, min_idx)
 
-def main():
-    #Read objects from annotation and output from trained network
-    inference_json='inference.json'
-    gt_json='gt.json'
-    #print(inference_json, gt_json)
-    #read_inference_objects(inference_json)
+#For annotation file and inference file find distances of cubes and their annotation. If there is no match for annotation
+# distance is set to np.inf
+def find_avg_distance(inference_json, gt_json):
     inference_objects = read_objects_from_json(inference_json)
-    print("\nINFERENCE\n",inference_objects)
+    #print("\nINFERENCE\n",inference_objects)
     gt_objects = read_objects_from_json(gt_json)
-    print("\nGT\n",gt_objects)
+    #print("\nGT\n",gt_objects)
 
     # Pair objects from inference to object from gt based on smallest distances
     # Indexes of matched pairs
@@ -66,8 +69,8 @@ def main():
             if obj['matched'] == True:
                 continue
             object_distances.append((*find_closest_object(obj, gt_objects), idx))
-        print("Minimal_distances:",object_distances)
-        print("MIN:", min(object_distances))
+        #print("Minimal_distances:",object_distances)
+        #print("MIN:", min(object_distances))
         # Get best match and setobjects as matched
         best_match = min(object_distances)
         #idx of inference object, idx of gt object, their distance
@@ -77,9 +80,71 @@ def main():
         inference_objects[best_match[2]]['matched'] = True
         gt_objects[best_match[1]]['matched'] = True
     #We have all the matches
-    print("MATCHES:",matches)
+    #print("MATCHES:",matches)
     #Count average distance of objects
-    print("AVERAGE DISTANCE", sum(distances)/len(distances))
+    if len(distances) > 0:
+        avg_distance = sum(distances)/len(distances)
+    else:
+        print('NO MATCHES FOuND')
+        avg_distance = -1
+    if len(distances) < len(gt_objects):
+        dif = len(gt_objects) - len(distances)
+        print(f'Found {len(distances)} cubes out of {len(gt_objects)}')
+        distances.extend([np.inf] * dif)    
+        print(f'distances:{distances}')
+    print("AVERAGE DISTANCE", avg_distance)
+    return distances
+
+
+def main():
+    #Get folder name and create graph and metrics for full dataset
+    folder_name = sys.argv[1]
+    inference_folder = '/home/angelikafedakova/Deep_Object_Pose/scripts/train2/inference_outputs/' + folder_name
+    gt_folder = '/home/angelikafedakova/Deep_Object_Pose/scripts/nvisii_data_gen/output/' + folder_name
+    
+    avg_distances = []
+    all_distances = []
+    # since dataset has structure <dataset_name>/000,...,<dataset_name>/n we have to dive into all folders
+    for dirname in os.listdir(inference_folder):
+        subdir = os.path.join(inference_folder, dirname)
+        # checking if it is a dir
+        if os.path.isdir(subdir):
+            #print(subdir)
+            #Go through all images/annotaion files
+            for filename in os.listdir(subdir):
+                inference_json = os.path.join(subdir, filename)
+                if os.path.isfile(inference_json) and 'json' in inference_json:
+                    print(inference_json)
+                    #Find corresponding annotation file to inference file
+                    gt_json = gt_folder + '/' + '/'.join(inference_json.split('/')[-2:])
+                    print("GT:", gt_json)
+                    if not exists(gt_json):
+                        raise ValueError('No annotation for file:' + inference_json + '\nNo such file:' + gt_json)
+                    #Find and add distances of cubes for one file
+                    all_distances.extend(find_avg_distance(inference_json, gt_json))
+                    #if dist != -1 and dist < 10:
+                     #   all_distances.extend(find_avg_distance(inference_json, gt_json))
+    
+    #Distances of all annotated objects to found objects
+    print(all_distances)
+    points_x = []
+    points_y = []
+    #Create graf, x axis is for distance, y axis has percentage of cubes with distance smaller than value on x axis
+    for i in np.arange (0, 10, 0.1):
+        percentage = sum(d < i for d in all_distances) / len(all_distances)
+        points_x.append(i)
+        points_y.append(percentage)
+    plt.plot(points_x, points_y)
+    plt.show()
+    plt.savefig('distances.png')
+    print(f'All Cubes:{len(all_distances)}')
+    print('Cubes with smaller distance than 2cm', sum(i < 2 for i in all_distances))
+    print('Cubes with inf distance', sum(i == np.inf for i in all_distances))
+    print('MEDIAN', np.median(all_distances))
+    print('1st quartile', np.percentile(all_distances, 25))
+    #print('DATASET AVG DIST:', sum(avg_distances)/len(avg_distances))
+    #print(inference_json, gt_json)
+    #read_inference_objects(inference_json)
 
 
     #print('\nDISTANCE')
