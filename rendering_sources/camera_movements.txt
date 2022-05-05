@@ -1,8 +1,0 @@
-PRVA cim vacsia ^ tym viac vpravo >
-DRUHA cim vacsia ^ tym nizsie v
-TRETIA cim vacsia tym vyssie od podlozky
-
-CAMERA EULER
-PRVA
-DRUHA
-TRETIA otaca okolo osi smerom z monitoru, + je proti smeru hodin
