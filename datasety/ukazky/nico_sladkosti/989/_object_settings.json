@@ -1,0 +1,24 @@
+{
+    "exported_object_classes": [
+        "lentilky",
+        "pez"
+    ],
+    "exported_objects": [
+        {
+            "class": "lentilky",
+            "cuboid_dimensions": [
+                0.10000000149011612,
+                0.02199999988079071,
+                0.02199999988079071
+            ]
+        },
+        {
+            "class": "pez",
+            "cuboid_dimensions": [
+                0.08299999684095383,
+                0.019999999552965164,
+                0.05400000140070915
+            ]
+        }
+    ]
+}
